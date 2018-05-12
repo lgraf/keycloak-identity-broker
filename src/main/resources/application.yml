@@ -1,0 +1,28 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-security-oauth2
+# https://docs.spring.io/spring-security/site/docs/5.0.5.RELEASE/reference/htmlsingle/#jc-oauth2login
+
+keycloak:
+  server-url: http://localhost:8081
+  realm: keycloak-identity-broker
+  oidc-url: ${keycloak.server-url}/auth/realms/${keycloak.realm}/protocol/openid-connect
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: spring-boot-app
+            client-secret: public-client-do-not-use-in-production
+            client-name: spring-boot-app
+            provider: keycloak
+            scope: openid, profile
+            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            token-uri: ${keycloak.oidc-url}/token
+            authorization-uri: ${keycloak.oidc-url}/auth
+            user-info-uri: ${keycloak.oidc-url}/userinfo
+            jwk-set-uri: ${keycloak.oidc-url}/certs
+            user-name-attribute: preferred_username
