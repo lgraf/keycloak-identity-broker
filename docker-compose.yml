@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  identity-broker:
+    build: ./identity-broker
+    image: kib/identity-broker
+    container_name: identity-broker
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: H2
+    networks:
+      identity-net:
+        ipv4_address: 10.5.0.5
+
+  external-oidc-provider:
+    build: ./external-oidc-provider
+    image: kib/external-oidc-provider
+    container_name: external-oidc-provider
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: H2
+    networks:
+      identity-net:
+        ipv4_address: 10.5.0.6
+
+networks:
+  identity-net:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1

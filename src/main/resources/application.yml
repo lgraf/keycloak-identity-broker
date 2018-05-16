@@ -2,7 +2,7 @@
 # https://docs.spring.io/spring-security/site/docs/5.0.5.RELEASE/reference/htmlsingle/#jc-oauth2login
 
 keycloak:
-  server-url: http://localhost:8081
+  server-url: http://10.5.0.5:8080
   realm: keycloak-identity-broker
   oidc-url: ${keycloak.server-url}/auth/realms/${keycloak.realm}/protocol/openid-connect
 
