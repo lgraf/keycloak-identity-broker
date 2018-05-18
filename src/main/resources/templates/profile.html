@@ -5,6 +5,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     </head>
     <body>
-        <p th:text="'Hello, ' + ${user} + '!'"/>
+        <div th:text="'Hello, ' + ${preferredUsername} + '!'" style="font-weight: bold"/>
+        <div th:text="'email: ' + ${email}"/>
+        <div th:text="'given name: ' + ${givenName}"/>
+        <div th:text="'family name: ' + ${familyName}"/>
+        <div th:text="'authorities: ' + ${authorities}"/>
+
+        <div style="white-space: pre-wrap;" th:text="'token: ' + ${token}"/>
     </body>
 </html>
