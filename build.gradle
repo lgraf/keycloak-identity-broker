@@ -7,7 +7,7 @@ apply plugin: 'io.spring.dependency-management'
 group 'org.lgraf'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 9
+sourceCompatibility = 10
 
 repositories {
     mavenCentral()
